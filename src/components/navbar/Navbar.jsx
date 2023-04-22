@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.scss";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
@@ -25,10 +25,10 @@ const Navbar = () => {
     <div className={active ? "navbar active" : "navbar"}>
       <div className="container">
         <div className="logo">
-          {/* <Link to="/"> */}
-          <span className="text">fiver</span>
-          <span className="dot">.</span>
-          {/* </Link> */}
+          <Link to="/" className="link">
+            <span className="text">fiver</span>
+            <span className="dot">.</span>
+          </Link>
         </div>
         <div className="links">
           <ul>
@@ -54,13 +54,13 @@ const Navbar = () => {
                   <div className="options">
                     {currentUser?.isSeller && (
                       <>
-                        <span>Gigs</span>
-                        <span>Add New Gig</span>
+                        <Link className="link">Gigs</Link>
+                        <Link className="link">Add New Gig</Link>
                       </>
                     )}
-                    <span>Orders</span>
-                    <span>Messages</span>
-                    <span>Logout</span>
+                    <Link className="link">Orders</Link>
+                    <Link className="link">Messages</Link>
+                    <Link className="link">Logout</Link>
                   </div>
                 )}
               </div>
