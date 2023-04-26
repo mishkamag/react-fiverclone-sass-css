@@ -1,0 +1,22 @@
+.home {
+  .features {
+    background-color: #f1fdf7;
+    display: flex;
+    justify-content: center;
+    padding: 100px 0px;
+    .container {
+      width: 1240px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .item {
+        h1 {
+        }
+        p {
+        }
+        .title {
+        }
+      }
+    }
+  }
+}
