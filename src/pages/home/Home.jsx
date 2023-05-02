@@ -4,8 +4,11 @@ import Featured from "../../components/featured/Featured";
 import TrustedBy from "../../components/trustedBy/TrustedBy";
 import Slide from "../../components/slider/Slide";
 import { cards } from "../../data";
+import { projects } from "../../data";
+
 import CatCard from "../../components/catCard/CatCard";
 import { AiOutlineCheckCircle } from "react-icons/ai";
+import ProjectCard from "../../components/catCard/projectCard/ProjectCard";
 
 const Home = () => {
   return (
@@ -102,6 +105,12 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <Slide slidesToShow={4} arrowsScroll={4}>
+        {projects.map((card) => (
+          <ProjectCard item={card} key={card.id} />
+        ))}
+      </Slide>
     </div>
   );
 };
