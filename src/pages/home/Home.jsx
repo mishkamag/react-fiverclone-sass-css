@@ -8,7 +8,9 @@ import { projects } from "../../data";
 
 import CatCard from "../../components/catCard/CatCard";
 import { AiOutlineCheckCircle } from "react-icons/ai";
-import ProjectCard from "../../components/catCard/projectCard/ProjectCard";
+import ProjectCard from "../../components/projectCard/ProjectCard";
+import Icons from "../../components/icons/Icons";
+
 
 const Home = () => {
   return (
@@ -67,6 +69,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <Icons/>
 
       <div className="features dark">
         <div className="container">

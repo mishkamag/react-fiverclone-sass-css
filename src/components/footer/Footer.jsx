@@ -71,7 +71,7 @@ function Footer() {
         <hr />
         <div className="bottom">
           <div className="left">
-            <h2>liverr</h2>
+            <h2>fiverr</h2>
             <span>© Mishka Maglaperidze . 2023</span>
           </div>
           <div className="right">

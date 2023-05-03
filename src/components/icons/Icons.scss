@@ -1,0 +1,51 @@
+.icons{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 50px;
+ 
+    .title{
+        margin:50px 20px ;
+    }
+    .container{
+        width: 1240px;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+      
+
+
+        .imgGalery{
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
+          
+            
+            .imgContent{
+                display: flex;
+                flex-direction: column;
+                width: 220px;
+                height: 220px;
+                align-items: center;
+              
+            
+                
+            }
+            img{
+                width: 70px;
+                height: 70px;
+                object-fit: cover;
+                padding-bottom: 18px;
+                border-bottom: 1px solid gray;
+
+             
+            }
+
+            span{
+                padding-top: 10px;
+            }
+        }
+
+      
+    }
+}
