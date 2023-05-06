@@ -59,11 +59,11 @@ const Navbar = () => {
                   <div className="options">
                     {currentUser?.isSeller && (
                       <>
-                        <Link className="link">Gigs</Link>
+                        <Link to="/mygigs" className="link">Gigs</Link>
                         <Link className="link">Add New Gig</Link>
                       </>
                     )}
-                    <Link className="link">Orders</Link>
+                    <Link to="/orders" className="link">Orders</Link>
                     <Link className="link">Messages</Link>
                     <Link className="link">Logout</Link>
                   </div>
