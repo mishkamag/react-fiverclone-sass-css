@@ -64,7 +64,7 @@ const Navbar = () => {
                       </>
                     )}
                     <Link to="/orders" className="link">Orders</Link>
-                    <Link className="link">Messages</Link>
+                    <Link to="/messages" className="link">Messages</Link>
                     <Link className="link">Logout</Link>
                   </div>
                 )}
