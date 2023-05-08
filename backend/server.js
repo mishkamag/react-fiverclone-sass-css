@@ -1,12 +1,16 @@
-const express = require("express")
+const express = require("express");
+const mongoose = require("mongoose");
+require("dotenv").config();
 
-const app = express()
+const app = express();
 
-app.listen(5000, ()=>{
-    console.log("backend is running")
- })
-
-
-app.get('/', (req, res) => {
-    res.json('I am your backend suka')
+mongoose
+  .connect(process.env.URL)
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log("connected to db & listening on port", process.env.PORT);
+    });
   })
+  .catch((error) => {
+    console.log(error);
+  });
