@@ -1,13 +1,13 @@
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config();
-const userRoute = require("./routes/user.route");
+const authRoute = require("./routes/auth.route");
 
 const app = express();
 
 // middleware
 app.use(express.json());
-app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
 
 mongoose
   .connect(process.env.URL)
