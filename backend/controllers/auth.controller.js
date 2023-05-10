@@ -1,10 +1,10 @@
-const jwt= require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 const userRegister = async (req, res) => {
   try {
-    const hash = bcrypt.hashSync(req.body.password, 5)
+    const hash = bcrypt.hashSync(req.body.password, 5);
     const newUser = new User({
       ...req.body,
       password: hash,
@@ -16,26 +16,31 @@ const userRegister = async (req, res) => {
   }
 };
 
-const userLogin = async(req, res) => {
+const userLogin = async (req, res) => {
   try {
-    const user =  await User.findOne({username:req.body.username})
-    if(!user) return res.status(404).send("User not found")
+    const user = await User.findOne({ username: req.body.username });
+    if (!user) return res.status(404).send("User not found");
 
-    const correctUser = bcrypt.compareSync(req.body.password, user.password)
-    if(!correctUser) return res.status(400).send("Wrong password or username")
+    const correctUser = bcrypt.compareSync(req.body.password, user.password);
+    if (!correctUser) return res.status(400).send("Wrong password or username");
 
-    const token = jwt.sign({
-      id: user._id,
-      isSeller: user.isSeller
-    }, process.env.JWT_KEY)
+    const token = jwt.sign(
+      {
+        id: user._id,
+        isSeller: user.isSeller,
+      },
+      process.env.JWT_KEY
+    );
 
-    const {password, ...other} = user._doc
-    res.cookie("accessToken", token, {
-      httpOnly: true
-    }).status(200).send(other)
-
+    const { password, ...other } = user._doc;
+    res
+      .cookie("accessToken", token, {
+        httpOnly: true,
+      })
+      .status(200)
+      .send(other);
   } catch (error) {
-    res.status(500).send("Some error")
+    res.status(500).send("Some error");
   }
 };
 
