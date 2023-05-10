@@ -1,3 +1,4 @@
+const jwt= require("jsonwebtoken");
 const User = require("../models/user.model");
 const bcrypt = require('bcrypt');
 
@@ -23,8 +24,15 @@ const userLogin = async(req, res) => {
     const correctUser = bcrypt.compareSync(req.body.password, user.password)
     if(!correctUser) return res.status(400).send("Wrong password or username")
 
+    const token = jwt.sign({
+      id: user._id,
+      isSeller: user.isSeller
+    }, process.env.JWT_KEY)
+
     const {password, ...other} = user._doc
-    res.status(200).send(other)
+    res.cookie("accessToken", token, {
+      httpOnly: true
+    }).status(200).send(other)
 
   } catch (error) {
     res.status(500).send("Some error")
