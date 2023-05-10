@@ -1,8 +1,9 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
+const { createError } = require("../utils/createEror");
 
-const userRegister = async (req, res) => {
+const userRegister = async (req, res, next) => {
   try {
     const hash = bcrypt.hashSync(req.body.password, 5);
     const newUser = new User({
@@ -11,18 +12,20 @@ const userRegister = async (req, res) => {
     });
     await newUser.save();
     res.status(201).send("User has been created");
-  } catch (error) {
-    res.status(500).send("Some error");
+  } catch (err) {
+    next(err);
   }
 };
 
-const userLogin = async (req, res) => {
+const userLogin = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    if (!user) return res.status(404).send("User not found");
+
+    if (!user) return next(createError(404, "User not found!"));
 
     const correctUser = bcrypt.compareSync(req.body.password, user.password);
-    if (!correctUser) return res.status(400).send("Wrong password or username");
+    if (!correctUser)
+      return next(createError(400, "Wrong password or username!"));
 
     const token = jwt.sign(
       {
@@ -39,12 +42,20 @@ const userLogin = async (req, res) => {
       })
       .status(200)
       .send(other);
-  } catch (error) {
-    res.status(500).send("Some error");
+  } catch (err) {
+    next(err);
   }
 };
 
-const userLogout = (req, res) => {};
+const userLogout = (req, res) => {
+  res
+    .clearCookie("accessToken", {
+      sameSite: "none",
+      secure: true,
+    })
+    .status(200)
+    .send("User has been loggout");
+};
 
 module.exports = {
   userRegister,
