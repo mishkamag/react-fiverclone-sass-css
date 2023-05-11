@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
-const { createError } = require("../utils/createEror");
+const { createError } = require("../helpers/createEror");
 
 const userRegister = async (req, res, next) => {
   try {
