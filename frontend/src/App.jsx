@@ -11,6 +11,8 @@ import MyGigs from "./pages/myGigs/MyGigs";
 import Add from "./pages/add/Add";
 import Messages from "./pages/messages/Messages";
 import Message from "./pages/message/Message";
+import Login from "./pages/login/Login";
+import Register from "./pages/register/Register";
 
 const App = () => {
   const Layout = () => {
@@ -59,6 +61,14 @@ const App = () => {
         {
           path: "/message/:id",
           element: <Message />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/register",
+          element: <Register />,
         },
       ],
     },
