@@ -61,7 +61,10 @@ const Navbar = () => {
                 }}
               >
                 <img src={currentUser.img || "/img/noavatar.jpg"} alt="" />
-                <span>{currentUser?.username}</span>
+                <span>
+                  {currentUser?.username[0].toUpperCase() +
+                    currentUser?.username.substring(1)}
+                </span>
                 {options && (
                   <div className="options">
                     {currentUser?.isSeller && (
