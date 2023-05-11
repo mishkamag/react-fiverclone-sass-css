@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.scss";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import newRequest from "../../helpers/newRequest";
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
@@ -16,8 +17,20 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"))
-  console.log(currentUser)
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  console.log(currentUser);
+
+  const navigate = useNavigate();
+
+  const logoutHandler = async () => {
+    try {
+      await newRequest.post("/auth/logout");
+      localStorage.setItem("currentUser", null);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div
@@ -47,22 +60,29 @@ const Navbar = () => {
                   setOptions(!options);
                 }}
               >
-                <img
-                  src="https://scontent.ftbs6-2.fna.fbcdn.net/v/t1.6435-9/71698868_1100255983510799_7974481038502002688_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=3aTnWV0TqXsAX8i2TAh&_nc_ht=scontent.ftbs6-2.fna&oh=00_AfClRm2YQkJoiyv7kpSDD86NIjT1KyTuBhR18b6bDFLxQQ&oe=646BADAC"
-                  alt=""
-                />
+                <img src={currentUser.img || "/img/noavatar.jpg"} alt="" />
                 <span>{currentUser?.username}</span>
                 {options && (
                   <div className="options">
                     {currentUser?.isSeller && (
                       <>
-                        <Link to="/mygigs" className="link">Gigs</Link>
-                        <Link to="/add" className="link">Add New Gig</Link>
+                        <Link to="/mygigs" className="link">
+                          Gigs
+                        </Link>
+                        <Link to="/add" className="link">
+                          Add New Gig
+                        </Link>
                       </>
                     )}
-                    <Link to="/orders" className="link">Orders</Link>
-                    <Link to="/messages" className="link">Messages</Link>
-                    <Link  className="link">Logout</Link>
+                    <Link to="/orders" className="link">
+                      Orders
+                    </Link>
+                    <Link to="/messages" className="link">
+                      Messages
+                    </Link>
+                    <Link className="link" onClick={logoutHandler}>
+                      Logout
+                    </Link>
                   </div>
                 )}
               </div>
@@ -102,7 +122,7 @@ const Navbar = () => {
               Lifestyle
             </Link>
           </div>
-          <hr/>
+          <hr />
         </>
       )}
     </div>
