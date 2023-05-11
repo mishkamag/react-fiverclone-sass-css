@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 
 const ProjectCard = ({item}) => {
     const { id  } = useParams();
-    console.log(id)
+    
   return (
     <Link to="/" className='link'>
     <div className="projectCard">

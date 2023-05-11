@@ -16,11 +16,8 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const currentUser = {
-    id: 1,
-    username: "mishka",
-    isSeller: true,
-  };
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+  console.log(currentUser)
 
   return (
     <div
