@@ -1,57 +1,88 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Register.scss";
 
-
 function Register() {
- 
+  const [file, setFile] = useState("");
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    password: "",
+    img: "",
+    phone: "",
+    country: "",
+    isSeller: false,
+    desc: "",
+  });
+
+  const changeHandler = (e) => {
+    setUser((prev) => {
+      return { ...prev, [e.target.name]: e.target.value };
+    });
+  };
+
+  const changeSeller = (e) => {
+    setUser((prev) => {
+      return { ...prev, isSeller: e.target.checked };
+    });
+  };
+
+  console.log(user);
   return (
     <div className="register">
-      <form >
+      <form>
         <div className="left">
           <h1>Create a new account</h1>
           <label htmlFor="">Username</label>
           <input
             name="username"
             type="text"
-            placeholder="johndoe"
-         
+            placeholder="username"
+            onChange={changeHandler}
           />
+
           <label htmlFor="">Email</label>
           <input
             name="email"
             type="email"
             placeholder="email"
-           
+            onChange={changeHandler}
           />
+
           <label htmlFor="">Password</label>
-          <input name="password" type="password"  />
+          <input name="password" type="password" onChange={changeHandler} />
+
           <label htmlFor="">Profile Picture</label>
-          <input type="file"  />
+          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+
           <label htmlFor="">Country</label>
           <input
             name="country"
             type="text"
-            placeholder="Usa"
-          
+            placeholder="Geo"
+            onChange={changeHandler}
           />
+
           <button type="submit">Register</button>
         </div>
+
         <div className="right">
           <h1>I want to become a seller</h1>
           <div className="toggle">
             <label htmlFor="">Activate the seller account</label>
             <label className="switch">
-              <input type="checkbox"/>
+              <input type="checkbox" onChange={changeSeller} />
               <span className="slider round"></span>
             </label>
           </div>
+
           <label htmlFor="">Phone Number</label>
           <input
             name="phone"
             type="text"
-            placeholder="+1 234 567 89"
-            
+            placeholder="+995 234 567 89"
+            onChange={changeHandler}
           />
+
           <label htmlFor="">Description</label>
           <textarea
             placeholder="A short description of yourself"
@@ -59,7 +90,7 @@ function Register() {
             id=""
             cols="30"
             rows="10"
-            
+            onChange={changeHandler}
           ></textarea>
         </div>
       </form>
