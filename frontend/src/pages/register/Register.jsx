@@ -3,6 +3,8 @@ import "./Register.scss";
 import newRequest from "../../helpers/newRequest";
 import upload from "../../helpers/upload";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+
 
 function Register() {
   const [file, setFile] = useState("");
@@ -40,9 +42,10 @@ function Register() {
         ...user,
         img: url,
       });
+      toast.success("You registed successfull!", { hideProgressBar: true });
       navigate("/login");
     } catch (err) {
-      console.log(err);
+      toast.error("Something went wrong", { hideProgressBar: true });
     }
   };
 

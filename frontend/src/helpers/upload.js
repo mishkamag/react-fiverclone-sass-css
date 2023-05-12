@@ -9,12 +9,6 @@ const upload = async (file) => {
     const res = await axios.post(
       " https://api.cloudinary.com/v1_1/dayas7n42/image/upload",
       data
-      //   {
-      //     headers: {
-      //       Authorization: "Bearer 857154711538518",
-      //     },
-      //     // Other request options
-      //   }
     );
     const { url } = res.data;
     return url;

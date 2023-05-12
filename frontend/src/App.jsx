@@ -13,11 +13,14 @@ import Messages from "./pages/messages/Messages";
 import Message from "./pages/message/Message";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const Layout = () => {
     return (
       <div className="app">
+        <ToastContainer />
         <Navbar />
         <Outlet />
         <Footer />

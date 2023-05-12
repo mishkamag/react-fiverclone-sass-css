@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Login.scss";
 import newRequest from "../../helpers/newRequest";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -15,8 +16,10 @@ function Login() {
     try {
       const res = await newRequest.post("/auth/login", { username, password });
       localStorage.setItem("currentUser", JSON.stringify(res.data));
+      toast.success("Sign successfull!", { hideProgressBar: true });
       navigate("/");
     } catch (err) {
+      toast.error("Wrong Credentials", { hideProgressBar: true });
       setError(err.response.data);
     }
   };
