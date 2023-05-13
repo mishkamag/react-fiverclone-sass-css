@@ -37,6 +37,10 @@ const UserSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    // imagePublicId: {
+    //   type: String,
+    //   required: false,
+    // },
   },
   {
     timestamps: true,
