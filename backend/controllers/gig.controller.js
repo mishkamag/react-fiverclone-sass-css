@@ -33,11 +33,29 @@ const deleteGig = async(req, res , next)=>{
 
 
 
-const getGig = async(req, res , next)=>{}
+const getGig = async(req, res , next)=>{
+    try {
+        const gig = await Gig.findById(req.params.id)
+        if(!gig) return next(createError)(404, "Gig not found" )
+
+        res.status(200).send(gig)
+    } catch (err) {
+        next(err)
+    }
+}
 
 
 
-const getGigs = async(req, res , next)=>{}
+const getGigs = async(req, res , next)=>{
+    try {
+        const gigs = await Gig.find()
+        if(!gigs) return next(createError)(404, "No Gigs in db" )
+
+        res.status(200).send(gigs)
+    } catch (err) {
+        next(err)
+    }
+}
 
 module.exports= {
     createGig,
