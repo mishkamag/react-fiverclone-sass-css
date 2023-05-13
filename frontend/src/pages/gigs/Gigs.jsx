@@ -4,6 +4,8 @@ import { AiOutlineDown } from "react-icons/ai";
 import { useState } from "react";
 import GigCard from "../../components/gigCard/GigCard";
 import { gigs } from "../../data";
+import { useQuery } from "@tanstack/react-query";
+import newRequest from "../../helpers/newRequest";
 
 const Gigs = () => {
   const [sort, setSort] = useState("sales");
@@ -13,6 +15,12 @@ const Gigs = () => {
     setSort(type);
     setHide(false);
   };
+
+  const { isPending, error, data } = useQuery({
+    queryKey: ["repoData"],
+    queryFn: () => newRequest("/gigs"),
+  });
+  console.log(data);
 
   return (
     <div className="gigs">
