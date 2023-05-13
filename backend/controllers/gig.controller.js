@@ -19,7 +19,17 @@ const createGig = async(req, res , next)=>{
 }
 
 
-const deleteGig = async(req, res , next)=>{}
+const deleteGig = async(req, res , next)=>{
+    try {
+        const gig = await Gig.findById(req.params.id)
+        if(gig.userId !== req.userId) return next(createError)(403, "You can delete only your gig" )
+
+        await Gig.findByIdAndDelete(req.params.id)
+        res.status(200).send("Gig has been deeleted")
+    } catch (err) {
+        next(err)
+    }
+}
 
 
 
