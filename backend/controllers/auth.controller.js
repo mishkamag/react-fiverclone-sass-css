@@ -10,8 +10,9 @@ const userRegister = async (req, res, next) => {
       ...req.body,
       password: hash,
     });
+
     await newUser.save();
-    res.status(201).send("User has been created");
+    res.status(201).send("User has been created.");
   } catch (err) {
     next(err);
   }
@@ -23,8 +24,8 @@ const userLogin = async (req, res, next) => {
 
     if (!user) return next(createError(404, "User not found!"));
 
-    const correctUser = bcrypt.compareSync(req.body.password, user.password);
-    if (!correctUser)
+    const isCorrect = bcrypt.compareSync(req.body.password, user.password);
+    if (!isCorrect)
       return next(createError(400, "Wrong password or username!"));
 
     const token = jwt.sign(

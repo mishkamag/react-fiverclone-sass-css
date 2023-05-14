@@ -22,13 +22,16 @@ import {
 } from "@tanstack/react-query";
 
 const App = () => {
+  const queryClient = new QueryClient();
   const Layout = () => {
     return (
       <div className="app">
-        <ToastContainer />
-        <Navbar />
-        <Outlet />
-        <Footer />
+        <QueryClientProvider client={queryClient}>
+          <ToastContainer />
+          <Navbar />
+          <Outlet />
+          <Footer />
+        </QueryClientProvider>
       </div>
     );
   };
