@@ -71,7 +71,7 @@ const getGigs = async (req, res, next) => {
   }
 
   try {
-    const gigs = await Gig.find(filters);
+    const gigs = await Gig.find(filters).sort({ [q.sort]: -1 });
     if (!gigs) return next(createError)(404, "No Gigs in db");
 
     res.status(200).send(gigs);

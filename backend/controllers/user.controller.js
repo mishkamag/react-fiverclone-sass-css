@@ -8,7 +8,6 @@ const { createError } = require("../helpers/createEror");
 //   api_secret: "IpVGMzzmt1IMsIVg3cL6K3ju23g"
 // });
 
-
 const deleteUser = async (req, res, next) => {
   const user = await User.findById(req.params.id);
 
@@ -20,11 +19,17 @@ const deleteUser = async (req, res, next) => {
   //   await cloudinary.uploader.destroy(user.imagePublicId);
   // }
 
-
   await User.findOneAndDelete(req.params.id);
   res.status(200).send("Acc has been deleted");
 };
 
+const getUser = async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  res.status(200).send(user);
+};
+
 module.exports = {
   deleteUser,
+  getUser,
 };
