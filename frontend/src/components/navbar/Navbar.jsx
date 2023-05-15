@@ -54,7 +54,7 @@ const Navbar = () => {
                 Sign In
               </Link>
             )}
-            {!currentUser?.isSeller && <li>Become a Seller</li>}
+            {!currentUser?.isSeller && <Link to="/register" className="link" >Become a Seller</Link>}
             {!currentUser && (
               <Link to="/register">
                 <button>Join</button>
