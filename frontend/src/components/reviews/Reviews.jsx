@@ -1,11 +1,10 @@
-import {  useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import newRequest from "../../helpers/newRequest";
 import Review from "../review/Review";
 import "./Reviews.scss";
 
 const Reviews = ({ gigId }) => {
-
   const { isLoading, error, data } = useQuery({
     queryKey: ["reviews"],
     queryFn: () =>
@@ -13,8 +12,6 @@ const Reviews = ({ gigId }) => {
         return res.data;
       }),
   });
-
- 
 
   return (
     <div className="reviews">
@@ -24,7 +21,6 @@ const Reviews = ({ gigId }) => {
         : error
         ? "Something went wrong!"
         : data.map((review) => <Review key={review._id} review={review} />)}
-     
     </div>
   );
 };

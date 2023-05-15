@@ -156,8 +156,8 @@ function Gig() {
                 </div>
               ))}
             </div>
-            <Link >
-            <button>Continue</button>
+            <Link>
+              <button>Continue</button>
             </Link>
           </div>
         </div>

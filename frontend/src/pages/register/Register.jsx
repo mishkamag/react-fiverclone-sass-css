@@ -5,7 +5,6 @@ import upload from "../../helpers/upload";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-
 function Register() {
   const [file, setFile] = useState("");
   const [user, setUser] = useState({
@@ -93,7 +92,7 @@ function Register() {
           <div className="toggle">
             <label htmlFor="">Activate the seller account</label>
             <label className="switch">
-              <input type="checkbox" name= "checkbox" onChange={changeSeller} />
+              <input type="checkbox" name="checkbox" onChange={changeSeller} />
               <span className="slider round"></span>
             </label>
           </div>

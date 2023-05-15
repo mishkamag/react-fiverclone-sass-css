@@ -35,7 +35,6 @@ const userLogin = async (req, res, next) => {
       },
       process.env.JWT_KEY
     );
-    
 
     const { password, ...other } = user._doc;
     res
@@ -44,7 +43,6 @@ const userLogin = async (req, res, next) => {
       })
       .status(200)
       .send(other);
-
   } catch (err) {
     next(err);
   }
