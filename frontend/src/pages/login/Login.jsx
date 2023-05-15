@@ -17,12 +17,15 @@ function Login() {
       const res = await newRequest.post("/auth/login", { username, password });
       localStorage.setItem("currentUser", JSON.stringify(res.data));
       toast.success("Sign successfull!", { hideProgressBar: true });
+      console.log(res.data)
       navigate("/");
     } catch (err) {
       toast.error("Wrong Credentials", { hideProgressBar: true });
       setError(err.response.data);
     }
+  
   };
+ 
 
   return (
     <div className="login">
