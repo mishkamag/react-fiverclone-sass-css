@@ -1,10 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React  from "react";
+import React, { useState }  from "react";
 import newRequest from "../../helpers/newRequest";
 import Review from "../review/Review";
 import "./Reviews.scss";
 const Reviews = ({ gigId }) => {
-  
+  const [errorMessage, setErrorMessage] = useState(null)
 
   const queryClient = useQueryClient()
   const { isLoading, error, data } = useQuery({
@@ -13,6 +13,7 @@ const Reviews = ({ gigId }) => {
       newRequest.get(`/reviews/${gigId}`).then((res) => {
         return res.data;
       }),
+   
     });
  
 
@@ -23,9 +24,13 @@ const Reviews = ({ gigId }) => {
     },
     onSuccess:()=>{
       queryClient.invalidateQueries(["reviews"])
-    }
+    },
+    onError: (error) => {
+      const errorMsg =error.response.data 
+      setErrorMessage(errorMsg) 
+    },
   });
-  
+  console.log(errorMessage)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,13 +39,14 @@ const Reviews = ({ gigId }) => {
     mutation.mutate({ gigId, desc, star });
   };
 
+ 
+
   return (
     <div className="reviews">
       <h2>Reviews</h2>
       {isLoading
         ? "loading"
-        : error
-        ? "Something went wrong!"
+     :error? "Something went wrong"
         : data.map((review) => <Review key={review._id} review={review} />)}
       <div className="add">
         <h3>Add a review</h3>
@@ -54,6 +60,7 @@ const Reviews = ({ gigId }) => {
             <option value={5}>5</option>
           </select>
           <button>Send</button>
+          {errorMessage && <span>{errorMessage}</span>}
         </form>
       </div>
     </div>
