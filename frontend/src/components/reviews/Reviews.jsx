@@ -1,36 +1,30 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React  from "react";
+import React from "react";
 import newRequest from "../../helpers/newRequest";
 import Review from "../review/Review";
 import "./Reviews.scss";
 import { toast } from "react-toastify";
 
 const Reviews = ({ gigId }) => {
-
-
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const { isLoading, error, data } = useQuery({
     queryKey: ["reviews"],
     queryFn: () =>
       newRequest.get(`/reviews/${gigId}`).then((res) => {
         return res.data;
       }),
-   
-    });
- 
-
+  });
 
   const mutation = useMutation({
     mutationFn: (review) => {
       return newRequest.post("/reviews", review);
     },
-    onSuccess:()=>{
-      queryClient.invalidateQueries(["reviews"])
+    onSuccess: () => {
+      queryClient.invalidateQueries(["reviews"]);
       toast.success("Review added successfully", { hideProgressBar: true });
     },
     onError: (error) => {
       toast.error(error.response.data, { hideProgressBar: true });
-      
     },
   });
 
@@ -41,14 +35,13 @@ const Reviews = ({ gigId }) => {
     mutation.mutate({ gigId, desc, star });
   };
 
- 
-
   return (
     <div className="reviews">
       <h2>Reviews</h2>
       {isLoading
         ? "loading"
-     :error? "Something went wrong"
+        : error
+        ? "Something went wrong"
         : data.map((review) => <Review key={review._id} review={review} />)}
       <div className="add">
         <h3>Add a review</h3>
@@ -62,7 +55,6 @@ const Reviews = ({ gigId }) => {
             <option value={5}>5</option>
           </select>
           <button>Send</button>
-          
         </form>
       </div>
     </div>

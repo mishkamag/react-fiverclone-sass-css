@@ -48,7 +48,6 @@ function Register() {
     }
   };
 
-  
   return (
     <div className="register">
       <form onSubmit={handleSubmit}>

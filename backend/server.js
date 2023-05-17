@@ -4,7 +4,8 @@ require("dotenv").config();
 const authRoute = require("./routes/auth.route");
 const userRoute = require("./routes/user.route");
 const gigRoute = require("./routes/gig.route");
-const reviewRoute = require ("./routes/review.route.js");
+const reviewRoute = require("./routes/review.route.js");
+const orderRoute = require("./routes/order.route.js");
 
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -14,12 +15,13 @@ const app = express();
 // middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "http://127.0.0.1:5173", credentials: true }));
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/gigs", gigRoute);
 app.use("/api/reviews", reviewRoute);
+app.use("/api/orders", orderRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

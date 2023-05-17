@@ -12,7 +12,6 @@ const Review = ({ review }) => {
       }),
   });
 
-
   return (
     <div className="review">
       {isLoading ? (
@@ -46,7 +45,7 @@ const Review = ({ review }) => {
         <img src="/img/dislike.png" alt="" />
         <span>No</span>
       </div>
-      <hr/>
+      <hr />
     </div>
   );
 };
