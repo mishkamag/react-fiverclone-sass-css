@@ -48,7 +48,7 @@ function Register() {
     }
   };
 
-  console.log(user);
+  
   return (
     <div className="register">
       <form onSubmit={handleSubmit}>

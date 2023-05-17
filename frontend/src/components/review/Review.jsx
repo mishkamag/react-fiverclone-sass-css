@@ -46,6 +46,7 @@ const Review = ({ review }) => {
         <img src="/img/dislike.png" alt="" />
         <span>No</span>
       </div>
+      <hr/>
     </div>
   );
 };

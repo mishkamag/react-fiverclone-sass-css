@@ -1,10 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React, { useState }  from "react";
+import React  from "react";
 import newRequest from "../../helpers/newRequest";
 import Review from "../review/Review";
 import "./Reviews.scss";
+import { toast } from "react-toastify";
+
 const Reviews = ({ gigId }) => {
-  const [errorMessage, setErrorMessage] = useState(null)
+
 
   const queryClient = useQueryClient()
   const { isLoading, error, data } = useQuery({
@@ -24,13 +26,13 @@ const Reviews = ({ gigId }) => {
     },
     onSuccess:()=>{
       queryClient.invalidateQueries(["reviews"])
+      toast.success("Review added successfully", { hideProgressBar: true });
     },
     onError: (error) => {
-      const errorMsg =error.response.data 
-      setErrorMessage(errorMsg) 
+      toast.error(error.response.data, { hideProgressBar: true });
+      
     },
   });
-  console.log(errorMessage)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,7 +62,7 @@ const Reviews = ({ gigId }) => {
             <option value={5}>5</option>
           </select>
           <button>Send</button>
-          {errorMessage && <span>{errorMessage}</span>}
+          
         </form>
       </div>
     </div>
