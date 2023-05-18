@@ -24,6 +24,13 @@ const createOrder = async (req, res, next) => {
 
 const getOrders = async (req, res, next) => {
   try {
+    const query = req.isSeller ? { sellerId: req.userId } : { buyerId: req.userId }
+    const orders = await Order.find({
+      ...query,
+      isCompleted: true,
+    });
+
+    res.status(200).send(orders);
   } catch (err) {
     next(err);
   }
