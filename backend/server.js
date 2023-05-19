@@ -7,6 +7,8 @@ const gigRoute = require("./routes/gig.route");
 const reviewRoute = require("./routes/review.route.js");
 const orderRoute = require("./routes/order.route.js");
 const conversationRoute = require("./routes/conversation.route.js");
+const messageRoute  = require("./routes/message.route.js");
+
 
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -24,6 +26,7 @@ app.use("/api/gigs", gigRoute);
 app.use("/api/reviews", reviewRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/conversations", conversationRoute);
+app.use("/api/messages", messageRoute);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
