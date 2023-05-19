@@ -33,7 +33,7 @@ const Orders = () => {
                 <th>Price</th>
                 <th>Contact</th>
               </tr>
-              {data.map((order) => (
+              {data?.length === 0 ? "No orders" : data?.map((order) => (
                 <tr key={order._id}>
                   <td>
                     <img className="image" src={order.img} alt="" />
