@@ -1,9 +1,12 @@
 const express = require("express");
-const { createOrder, getOrders } = require("../controllers/order.controller");
+const { getOrders , intent } = require("../controllers/order.controller");
 const { verifyToken } = require("../middleware/jwt");
 const router = express.Router();
 
-router.post("/:gigId", verifyToken, createOrder);
+
 router.get("/", verifyToken, getOrders);
+router.post("/create-payment-intent/:id", verifyToken, intent);
+
+
 
 module.exports = router;
