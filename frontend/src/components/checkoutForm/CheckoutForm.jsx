@@ -85,7 +85,7 @@ const CheckoutForm = () => {
 
   
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <form id="payment-form" className="payment-form" onSubmit={handleSubmit}>
     <LinkAuthenticationElement
       id="link-authentication-element"
       onChange={(e) => setEmail(e.target.value)}
