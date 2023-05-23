@@ -7,8 +7,7 @@ const gigRoute = require("./routes/gig.route");
 const reviewRoute = require("./routes/review.route.js");
 const orderRoute = require("./routes/order.route.js");
 const conversationRoute = require("./routes/conversation.route.js");
-const messageRoute  = require("./routes/message.route.js");
-
+const messageRoute = require("./routes/message.route.js");
 
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -18,7 +17,7 @@ const app = express();
 // middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "http://127.0.0.1:5173", credentials: true }));
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);

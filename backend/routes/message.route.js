@@ -1,5 +1,8 @@
 const express = require("express");
-const { createMessage, getMessages, } = require("../controllers/message.controller");
+const {
+  createMessage,
+  getMessages,
+} = require("../controllers/message.controller");
 const { verifyToken } = require("../middleware/jwt");
 const router = express.Router();
 

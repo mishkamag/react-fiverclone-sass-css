@@ -1,10 +1,11 @@
 const Order = require("../models/order.model");
 const Gig = require("../models/gig.model");
-const stripe = require("stripe")('sk_test_51MzgAODEiWKSrwTBLsg3b0TjGwCv87wkmjafzWPuZYyQA0f3smOU9emOnP0VnEFIqDEL0zZtiKbJllzUSqffvxZw00KXYHj2YX');
+const stripe = require("stripe")(
+  "sk_test_51MzgAODEiWKSrwTBLsg3b0TjGwCv87wkmjafzWPuZYyQA0f3smOU9emOnP0VnEFIqDEL0zZtiKbJllzUSqffvxZw00KXYHj2YX"
+);
 
-
-const intent = async (req, res, next) =>{
-  const gig = await Gig.findById(req.params.id)
+const intent = async (req, res, next) => {
+  const gig = await Gig.findById(req.params.id);
 
   const paymentIntent = await stripe.paymentIntents.create({
     amount: gig.price * 100,
@@ -27,9 +28,7 @@ const intent = async (req, res, next) =>{
   res.status(200).send({
     clientSecret: paymentIntent.client_secret,
   });
-}
-
-
+};
 
 const getOrders = async (req, res, next) => {
   try {
@@ -42,8 +41,6 @@ const getOrders = async (req, res, next) => {
     next(err);
   }
 };
-
-
 
 const confirm = async (req, res, next) => {
   try {
@@ -64,9 +61,8 @@ const confirm = async (req, res, next) => {
   }
 };
 
-
 module.exports = {
   getOrders,
   intent,
-  confirm
+  confirm,
 };

@@ -1,7 +1,7 @@
-const  Message = require("../models/message.model.js");
+const Message = require("../models/message.model.js");
 const Conversation = require("../models/conversation.model.js");
 
- const createMessage = async (req, res, next) => {
+const createMessage = async (req, res, next) => {
   const newMessage = new Message({
     conversationId: req.body.conversationId,
     userId: req.userId,
@@ -27,7 +27,7 @@ const Conversation = require("../models/conversation.model.js");
   }
 };
 
- const getMessages = async (req, res, next) => {
+const getMessages = async (req, res, next) => {
   try {
     const messages = await Message.find({ conversationId: req.params.id });
     res.status(200).send(messages);
@@ -36,7 +36,7 @@ const Conversation = require("../models/conversation.model.js");
   }
 };
 
-module.exports ={
-    createMessage,
-    getMessages
-}
+module.exports = {
+  createMessage,
+  getMessages,
+};

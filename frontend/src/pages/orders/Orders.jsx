@@ -53,23 +53,25 @@ const Orders = () => {
                 <th>Price</th>
                 <th>Contact</th>
               </tr>
-              {data?.length === 0 ? "No orders" : data?.map((order) => (
-                <tr key={order._id}>
-                  <td>
-                    <img className="image" src={order.img} alt="" />
-                  </td>
-                  <td>{order.title}</td>
-                  <td>{order.price}</td>
-                  <td>
-                    <img
-                      className="message"
-                      src="./img/message.png"
-                      alt=""
-                      onClick={() => handleContact(order)}
-                    />
-                  </td>
-                </tr>
-              ))}
+              {data?.length === 0
+                ? "No orders"
+                : data?.map((order) => (
+                    <tr key={order._id}>
+                      <td>
+                        <img className="image" src={order.img} alt="" />
+                      </td>
+                      <td>{order.title}</td>
+                      <td>{order.price}</td>
+                      <td>
+                        <img
+                          className="message"
+                          src="./img/message.png"
+                          alt=""
+                          onClick={() => handleContact(order)}
+                        />
+                      </td>
+                    </tr>
+                  ))}
             </tbody>
           </table>
         </div>

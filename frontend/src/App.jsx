@@ -17,7 +17,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Payment from "./pages/payment/Payment";
-import Success from "./pages/Success/Success";
+import Success from "./pages/success/Success";
 
 const App = () => {
   const queryClient = new QueryClient();
