@@ -16,6 +16,8 @@ import Register from "./pages/register/Register";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Payment from "./pages/payment/Payment";
+import Success from "./pages/Success/Success";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -76,6 +78,14 @@ const App = () => {
         {
           path: "/register",
           element: <Register />,
+        },
+        {
+          path: "/pay/:id",
+          element: <Payment />,
+        },
+        {
+          path: "/success",
+          element: <Success />,
         },
       ],
     },
