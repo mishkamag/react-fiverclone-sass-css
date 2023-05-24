@@ -65,7 +65,6 @@ const Add = () => {
     mutation.mutate(state);
     navigate("/mygigs");
   };
-  console.log(state);
 
   return (
     <div className="add">
